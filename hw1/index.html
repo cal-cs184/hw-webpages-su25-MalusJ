@@ -52,13 +52,19 @@
 
 		<h2>Task 1: Drawing Single-Color Triangles</h2>
 		Before working on rasterizing, I made sure that the triangles are consistent with its orientation, in this case making them all clockwise. So I check the coordinates and apply a test on them. This is done by calculating the signed area using the coordinates of each vertex. The formula is shown below:
-		<li> \[ (x_1 - x_0)(y_2 - y_0) - (x_2 - x_0)(y_1 - y_0) \]</li>
-		If the value is positive, the vertices are ordered clockwise.If the value is negative, the order is counterclockwise and I will swap two vertices to make it clockwise. 
-		<p>After ensuring the same orientation, I turn the triangle into edge <b>vectors</b> for implementation purposes. Each side of triangle also becomes a vector. 
-		Then we get the bounding box by calculating the min and max of these points coordinates. The value is taken floor/ceiling to make sure it does not miss anything. Then we apply the sampling method from lecture, three lines test, on each pixel within bounding box to determine whether it should be filled. The calculation is done by using the inward-facing normal vectors.</p>
+		<p>\[ (x_1 - x_0)(y_2 - y_0) - (x_2 - x_0)(y_1 - y_0) \] </p>
+		If the value is positive, the vertices are ordered clockwise.If the value is negative, the order is counterclockwise and the algorithm will swap two vertices to make it clockwise. 
+		<p>After ensuring the same orientation, I turn the triangle into edge <b>vectors</b> for implementation purposes. Each side of triangle also becomes a vector. Vertices are represented as A, B, and C. Edges are are represented as AB, BC, and CA.
+		Then we get the bounding box by calculating the min and max of these points coordinates. The value is taken floor/ceiling to make sure it does not miss anything. Then we apply the sampling method from lecture,<b>three lines test</b>, on each pixel within bounding box to determine whether it should be filled. I computed inward-facing normal vectors by taking the cross product of each edge with z-axis unit vector (0, 0, 1) to suuport the Three-Line Test.</p>
 
-		<p>The assignement requires the algorithm to be no worse than checking every pixel within the bounding box. Since my algorithm is exactly the same approach, it meets the requirement</p>
-		<p>extra credit not attempted</p>
+		<p>The three line test can be breaked down into 3 steps</p>
+		<ul>
+					<li>For each edge, subtract the edge's startubf vertex from the pixel to get directional vector.</li>
+					<li>Take the dot product of the directional vector with the edge's inward-facing normal vector.</li>
+					<li>If all three dot products are non-negative, that means the pixel lies inside the triangle.</li>
+		</ul>
+		<p>The assignement requires the algorithm to be no worse than checking every pixel within the bounding box. Since my algorithm is exactly the same approach, it meets the requirement. Extra credit not attempted</p>
+		
 		<div style="display: flex; flex-direction: column; align-items: center;">
 			<table style="width: 100%; text-align: center; border-collapse: collapse;">
 			  <tr>
