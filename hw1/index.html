@@ -51,13 +51,11 @@
 		Give a high-level overview of what you implemented in this homework. Think about what you've built as a whole. Share your thoughts on what interesting things you've learned from completing the homework.
 
 		<h2>Task 1: Drawing Single-Color Triangles</h2>
-		Before working on rasterizing, I made sure that the triangles are consistent with its orientation, in this case making them all clockwise. So I check the coordinates and apply a test on them, if it is counterclockwise, I will swap two vertices. This is done by calculating the signed area using the coordinates of each vertex. The formula is shown below:
-		<td style="text-align: center;">
-				  <img src="demo0.png" width="400px"/>
-		</td>
-		If the value is positive, the vertices are ordered clockwise. And we would swap the vertices, if the value is negative meaning the order is counterclockwise. 
-		After ensuring the same orientation, I turn the triangle into edge <b>vectors</b> for implementation purposes. Each side of triangle also becomes a vector. 
-		Then we get the bounding box by calculating the min and max of these points coordinates. The value is taken floor/ceiling to make sure it does not miss anything. Then we apply the sampling method from lecture, three lines test, on each pixel within bounding box to determine whether it should be filled. The calculation is done by using the inward-facing normal vectors.
+		Before working on rasterizing, I made sure that the triangles are consistent with its orientation, in this case making them all clockwise. So I check the coordinates and apply a test on them. This is done by calculating the signed area using the coordinates of each vertex. The formula is shown below:
+		<li> \[ (x_1 - x_0)(y_2 - y_0) - (x_2 - x_0)(y_1 - y_0) \]</li>
+		If the value is positive, the vertices are ordered clockwise.If the value is negative, the order is counterclockwise and I will swap two vertices to make it clockwise. 
+		<p>After ensuring the same orientation, I turn the triangle into edge <b>vectors</b> for implementation purposes. Each side of triangle also becomes a vector. 
+		Then we get the bounding box by calculating the min and max of these points coordinates. The value is taken floor/ceiling to make sure it does not miss anything. Then we apply the sampling method from lecture, three lines test, on each pixel within bounding box to determine whether it should be filled. The calculation is done by using the inward-facing normal vectors.</p>
 
 		<p>The assignement requires the algorithm to be no worse than checking every pixel within the bounding box. Since my algorithm is exactly the same approach, it meets the requirement</p>
 		<p>extra credit not attempted</p>
