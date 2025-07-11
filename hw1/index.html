@@ -28,7 +28,7 @@
 	<body>
 		<div class="container">
 		<h1>CS184/284A Spring 2025 Homework 1 Write-Up</h1>
-		<div style="text-align: center;">Names: </div>
+		<div style="text-align: center;">Names: Yuanbo Jiang</div>
 
 		<br>
 
@@ -40,7 +40,7 @@
 
 		<figure>
 			<img src="lion.jpg" alt="Lion" style="width:50%"/>
-			<figcaption>You can add images with captions!</figcaption>
+			<figcaption>Project 1 Rasterizer</figcaption>
 		</figure>
 
 		<!--
@@ -51,31 +51,24 @@
 		Give a high-level overview of what you implemented in this homework. Think about what you've built as a whole. Share your thoughts on what interesting things you've learned from completing the homework.
 
 		<h2>Task 1: Drawing Single-Color Triangles</h2>
-		Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+		Before working on rasterizing, I made sure that the triangles are consistent with its orientation, in this case making them all clockwise. So I check the coordinates and apply a test on them, if it is counterclockwise, I will swap two vertices. After ensuring the same orientation, I turn the triangle into edge <b>vectors</b> for implementation purposes. Each side of triangle also becomes a vector. 
+		Then we get the bounding box by calculating the min and max of these points coordinates. The value is taken floor/ceiling to make sure it does not miss anything. Then we apply the sampling method from lecture, three lines test, on each pixel within bounding box to determine whether it should be filled. The calculation is done by using the inward-facing normal vectors.
 
-		<p>Here is an example 2x2 gridlike structure using an HTML table. Each <b>tr</b> is a row and each <b>td</b> is a column in that row. You might find this useful for framing and showing your result images in an organized fashion.</p>
+		<p>The assignement requires the algorithm to be no worse than checking every pixel within the bounding box. Since my algorithm is exactly the same approach, it meets the requirement</p>
+		<p>extra credit not attempted</p>
 		<div style="display: flex; flex-direction: column; align-items: center;">
 			<table style="width: 100%; text-align: center; border-collapse: collapse;">
 			  <tr>
 				<td style="text-align: center;">
-				  <img src="lion.jpg" width="400px"/>
-				  <figcaption>Caption goes here.</figcaption>
+				  <img src="demo1.jpg" width="400px"/>
+				  <figcaption>Result</figcaption>
 				</td>
 				<td style="text-align: center;">
-				  <img src="lion.jpg" width="400px"/>
-				  <figcaption>Caption goes here.</figcaption>
+				  <img src="demo2.jpg" width="400px"/>
+				  <figcaption>Result with inspector</figcaption>
 				</td>
 			  </tr>
-			  <tr>
-				<td style="text-align: center;">
-				  <img src="lion.jpg" width="400px"/>
-				  <figcaption>Caption goes here.</figcaption>
-				</td>
-				<td style="text-align: center;">
-				  <img src="lion.jpg" width="400px"/>
-				  <figcaption>Caption goes here.</figcaption>
-				</td>
-			  </tr>
+			  
 			</table>
 		</div>
 		
