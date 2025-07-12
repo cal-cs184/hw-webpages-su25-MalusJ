@@ -91,29 +91,24 @@
 		</ul>
 		<p>The idea behind supersampling can be seen as rendering in a higher resolution and scale down to the one we have. This is done by using <b>subsample grid</b> within each pixel. Instead of determining the color of a pixel from a single point, we divide it into subsamples. And the results from all subsamples in a pixel are averaged to determine the color. This approach is a useful tool to  remove the sawtooth feeling in the image and to eventually improve image's quality.</p>
 		<p>To enable Antialiasing, I edited the size pf <b>sample_buffer</b> to adapt. And I modified <b>rasterize_triangle</b> looping method to cover the subsamples and apply the coverage test on them. Finally, I edited the <b>resolve_to_framebuffer</b> to average all subsamples for each pixel before getting the RGB value of the sample.</b></p>
-		<div style="display: flex; flex-direction: column; align-items: center;">
-			<table style="width: 100%; text-align: center; border-collapse: collapse;">
-			  <tr>
-				<td style="text-align: center;">
-				  <img src="super1.png" width="400px"/>
-				  <figcaption>Sample Rate 1</figcaption>
-				</td>
-				<td style="text-align: center;">
-				  <img src="super4.png" width="400px"/>
-				  <figcaption>Sample Rate 4</figcaption>
-				</td>
-				<td style="text-align: center;">
-				  <img src="super9p.png" width="400px"/>
-				  <figcaption>Sample Rate 9</figcaption>
-				</td>
-				<td style="text-align: center;">
-				  <img src="super16.png" width="400px"/>
-				  <figcaption>Sample Rate 16</figcaption>
-				</td>
-			  </tr>
-			  
-			</table>
+		<div style="display: flex; justify-content: center; gap: 20px; align-items: center;">
+			<div style="text-align: center;">
+			<img src="super1.png" width="300px"/>
+			<figcaption>Sample Rate 1</figcaption>
+			</div>
+		<div style="text-align: center;">
+			<img src="super4.png" width="300px"/>
+			<figcaption>Sample Rate 4</figcaption>
 		</div>
+		<div style="text-align: center;">
+			<img src="super9.png" width="300px"/>
+			<figcaption>Sample Rate 9</figcaption>
+		</div>
+		<div style="text-align: center;">
+			<img src="super16.png" width="300px"/>
+			<figcaption>Sample Rate 16</figcaption>
+		</div>
+		
 		
 		<h2>Task 3: Transforms</h2>
 		Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
