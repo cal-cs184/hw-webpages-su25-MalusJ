@@ -30,14 +30,7 @@
 		<h1>CS184/284A Spring 2025 Homework 1 Write-Up</h1>
 		<div style="text-align: center;">Names: Yuanbo Jiang</div>
 
-		<br>
-
-		Link to webpage: (TODO) <a href="https://cs184.eecs.berkeley.edu/sp25">cs184.eecs.berkeley.edu/sp25</a>
 		
-		<br>
-
-		Link to GitHub repository: (TODO) <a href="https://cs184.eecs.berkeley.edu/sp25">cs184.eecs.berkeley.edu/sp25</a>
-
 		<figure>
 			<img src="lion.jpg" alt="Lion" style="width:50%"/>
 			<figcaption>Project 1 Rasterizer</figcaption>
@@ -47,9 +40,7 @@
 		We've already added one heading per task, to make your write-up as navigable when grading. Please fit your write-up within these sections!
 		-->
 
-		<h2>Overview</h2>
-		Give a high-level overview of what you implemented in this homework. Think about what you've built as a whole. Share your thoughts on what interesting things you've learned from completing the homework.
-
+		
 		<h2>Task 1: Drawing Single-Color Triangles</h2>
 		Before working on rasterizing, I made sure that the triangles are consistent with its orientation, in this case making them all clockwise. So I check the coordinates and apply a test on them. This is done by calculating the signed area using the coordinates of each vertex. The formula is shown below:
 		<p>\[ (x_1 - x_0)(y_2 - y_0) - (x_2 - x_0)(y_1 - y_0) \] </p>
