@@ -60,7 +60,7 @@ $$
 </p>Given a list of n control points,p<sub>1</sub>, p<sub>2</sub>, ... p<sub>n</sub> and the parameter t. This is also how it is implemented in my code. It started with the original control points, and then iteratively perform linear interpolation and push back the new points created. The algorihtm ends when the vector only has one point, which is the point on the Bezier curve at parameter t.
 </p>
 
-		<p>I will demonstrate the result with a customized 6-degree bezier curve and show how it works differently with a different parameter t and moved control points.</p>
+		<p>I will demonstrate the result with a customized 6-degree bezier curve and show how it works differently with a different parameter t and moved control points. The red dot represents the final point.</p>
 		<div style="display: flex; flex-direction: column; align-items: center;">
 			<table style="width: 100%; text-align: center; border-collapse: collapse;">
 			  <tr>
@@ -117,8 +117,13 @@ $$
 		</div>
 
 		<h3>Part 2: Bezier surfaces with separable 1D de Casteljau</h3>
-		Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-
+		<p> repeatedly applying Casteljau's we are able to extend the algorithm and evalueate a 2D Bezier surface. We first evaluate the rows of control points at parameter u to get the intermediate points, then we evaluate these points at parameter v to obtain the final points on the 2D Bezier surface!
+		</p>
+		<p>To implement this, I first created a 1D evalution function similar to what we have for the 1D Bezier curve. This function wil be used another function that calls it on each row to get the u-direction intermediate points, and calls it again to compute the final points for the surface.</p>
+		<td style="text-align: center;">
+				  <img src="tea.png" width="400px"/>
+				  <figcaption>Bezier Curve with Moved Control points</figcaption>
+				</td>
 		<h2>Section II: Triangle Meshes and Half-Edge Data Structure</h2>
 
 		<h3>Part 3: Area-weighted vertex normals</h3>
