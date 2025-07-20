@@ -57,7 +57,7 @@
 $$
 p'_i = \text{lerp}(p_i, p_{i+1}, t) = (1 - t)p_i + t p_{i+1}
 $$
-</p>Given a list of n control points, $$p_1, p_2, ... p_n$$ and the parameter t.
+</p>Given a list of n control points,p_1, p_2, ... p_n and the parameter t. This is also how it is implemented in my code. It started with the original control points, and then iteratively perform linear interpolation and push back the new points created. The algorihtm ends when the vector only has one point, which is the point on the Bezier curve at parameter t.
 </p>
 
 		<p>Here is an example 2x2 gridlike structure using an HTML table. Each <b>tr</b> is a row and each <b>td</b> is a column in that row. You might find this useful for framing and showing your result images in an organized fashion.</p>
