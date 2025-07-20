@@ -53,8 +53,11 @@
 		<h2>Section I: Bezier Curves and Surfaces</h2>
 
 		<h3>Part 1: Bezier curves with 1D de Casteljau subdivision</h3>
-		We will be using Casteljau's algorithm in this part to draw a Bezier curve. Casteljau's algorithm is a commonly used way for evaluating Bezier curves given a list of points. The algorithm works in a recursive manner. It repeatedly interpolate between control points until there is only one point remain. And the last point lies on the Bezier curve. The formula can be written as:P<sup>(k)</sup><sub>i</sub> = (1 - t) · P<sup>(k-1)</sup><sub>i</sub> + t · P<sup>(k-1)</sup><sub>i+1</sub><br><br>
-where P<sup>(0)</sup><sub>i</sub> are the original control points, and P<sup>(n)</sup><sub>0</sub> is the final point on the curve at parameter t.
+		We will be using Casteljau's algorithm in this part to draw a Bezier curve. Casteljau's algorithm is a commonly used way for evaluating Bezier curves given a list of points. The algorithm works in a recursive manner. It repeatedly interpolate between control points until there is only one point remain. And the last point lies on the Bezier curve. The formula can be written as:<p>
+$$
+p'_i = \text{lerp}(p_i, p_{i+1}, t) = (1 - t)p_i + t p_{i+1}
+$$
+</p>Given a list of n control points, $$p_1, p_2, ... p_n$$ and the parameter t.
 </p>
 
 		<p>Here is an example 2x2 gridlike structure using an HTML table. Each <b>tr</b> is a row and each <b>td</b> is a column in that row. You might find this useful for framing and showing your result images in an organized fashion.</p>
