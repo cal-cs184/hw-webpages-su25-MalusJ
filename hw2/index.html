@@ -57,30 +57,60 @@
 $$
 p'_i = \text{lerp}(p_i, p_{i+1}, t) = (1 - t)p_i + t p_{i+1}
 $$
-</p>Given a list of n control points,p_1, p_2, ... p_n and the parameter t. This is also how it is implemented in my code. It started with the original control points, and then iteratively perform linear interpolation and push back the new points created. The algorihtm ends when the vector only has one point, which is the point on the Bezier curve at parameter t.
+</p>Given a list of n control points,p<sub>1</sub>, p<sub>2</sub>, ... p<sub>n</sub> and the parameter t. This is also how it is implemented in my code. It started with the original control points, and then iteratively perform linear interpolation and push back the new points created. The algorihtm ends when the vector only has one point, which is the point on the Bezier curve at parameter t.
 </p>
 
-		<p>Here is an example 2x2 gridlike structure using an HTML table. Each <b>tr</b> is a row and each <b>td</b> is a column in that row. You might find this useful for framing and showing your result images in an organized fashion.</p>
+		<p>I will demonstrate the result with a customized 6-degree bezier curve and show how it works differently with a different parameter t and moved control points.</p>
 		<div style="display: flex; flex-direction: column; align-items: center;">
 			<table style="width: 100%; text-align: center; border-collapse: collapse;">
 			  <tr>
 				<td style="text-align: center;">
-				  <img src="teapot.png" width="400px"/>
-				  <figcaption>Caption goes here.</figcaption>
+				  <img src="bzr1.png" width="400px"/>
+				  <figcaption>Bezier Curve</figcaption>
 				</td>
 				<td style="text-align: center;">
-				  <img src="teapot.png" width="400px"/>
-				  <figcaption>Caption goes here.</figcaption>
+				  <img src="bzr2.png" width="400px"/>
+				  <figcaption>Bezier Curve One Step</figcaption>
 				</td>
 			  </tr>
 			  <tr>
 				<td style="text-align: center;">
-				  <img src="teapot.png" width="400px"/>
-				  <figcaption>Caption goes here.</figcaption>
+				  <img src="bzr3.png" width="400px"/>
+				  <figcaption>Bezier Curve Two Step</figcaption>
 				</td>
 				<td style="text-align: center;">
-				  <img src="teapot.png" width="400px"/>
-				  <figcaption>Caption goes here.</figcaption>
+				  <img src="bzr4.png" width="400px"/>
+				  <figcaption>Bezier Curve Three Step</figcaption>
+				</td>
+			  </tr>
+			  			  <tr>
+				<td style="text-align: center;">
+				  <img src="bzr5.png" width="400px"/>
+				  <figcaption>Bezier Curve Four Step</figcaption>
+				</td>
+				<td style="text-align: center;">
+				  <img src="bzr6.png" width="400px"/>
+				  <figcaption>Bezier Curve Five Step</figcaption>
+				</td>
+			  </tr>
+			  			  <tr>
+				<td style="text-align: center;">
+				  <img src="bzr7.png" width="400px"/>
+				  <figcaption>Bezier Curve Six Step</figcaption>
+				</td>
+				<td style="text-align: center;">
+				  <img src="bzr8.png" width="400px"/>
+				  <figcaption>Bezier Curve Final Step</figcaption>
+				</td>
+			  </tr>
+			  			  <tr>
+				<td style="text-align: center;">
+				  <img src="bzr_move.png" width="400px"/>
+				  <figcaption>Bezier Curve with Different t</figcaption>
+				</td>
+				<td style="text-align: center;">
+				  <img src="bzr_drag.png" width="400px"/>
+				  <figcaption>Bezier Curve with Moved Control points</figcaption>
 				</td>
 			  </tr>
 			</table>
