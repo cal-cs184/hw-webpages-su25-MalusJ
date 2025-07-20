@@ -40,7 +40,7 @@
 
 		<figure>
 			<img src="teapot.png" alt="Teapot" style="width:50%"/>
-			<figcaption>You can add images with captions!</figcaption>
+			<figcaption>Teapot</figcaption>
 		</figure>
 
 		<!--
@@ -53,7 +53,9 @@
 		<h2>Section I: Bezier Curves and Surfaces</h2>
 
 		<h3>Part 1: Bezier curves with 1D de Casteljau subdivision</h3>
-		Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+		We will be using Casteljau's algorithm in this part to draw a Bezier curve. Casteljau's algorithm is a commonly used way for evaluating Bezier curves given a list of points. The algorithm works in a recursive manner. It repeatedly interpolate between control points until there is only one point remain. And the last point lies on the Bezier curve. The formula can be written as:P<sup>(k)</sup><sub>i</sub> = (1 - t) · P<sup>(k-1)</sup><sub>i</sub> + t · P<sup>(k-1)</sup><sub>i+1</sub><br><br>
+where P<sup>(0)</sup><sub>i</sub> are the original control points, and P<sup>(n)</sup><sub>0</sub> is the final point on the curve at parameter t.
+</p>
 
 		<p>Here is an example 2x2 gridlike structure using an HTML table. Each <b>tr</b> is a row and each <b>td</b> is a column in that row. You might find this useful for framing and showing your result images in an organized fashion.</p>
 		<div style="display: flex; flex-direction: column; align-items: center;">
