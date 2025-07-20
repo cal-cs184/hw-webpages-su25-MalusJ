@@ -117,13 +117,13 @@ $$
 		</div>
 
 		<h3>Part 2: Bezier surfaces with separable 1D de Casteljau</h3>
-		<p> repeatedly applying Casteljau's we are able to extend the algorithm and evalueate a 2D Bezier surface. We first evaluate the rows of control points at parameter u to get the intermediate points, then we evaluate these points at parameter v to obtain the final points on the 2D Bezier surface!
+		<p>By repeatedly applying Casteljau's we are able to extend the algorithm and evalueate a 2D Bezier surface. We first evaluate the rows of control points at parameter u to get the intermediate points, then we evaluate these points at parameter v to obtain the final points on the 2D Bezier surface!
 		</p>
 		<p>To implement this, I first created a 1D evalution function similar to what we have for the 1D Bezier curve. This function wil be used another function that calls it on each row to get the u-direction intermediate points, and calls it again to compute the final points for the surface.</p>
-		<td style="text-align: center;">
+		 <tr><td style="text-align: center;">
 				  <img src="tea.png" width="400px"/>
 				  <figcaption>Bezier Curve with Moved Control points</figcaption>
-				</td>
+				</td></tr>
 		<h2>Section II: Triangle Meshes and Half-Edge Data Structure</h2>
 
 		<h3>Part 3: Area-weighted vertex normals</h3>
