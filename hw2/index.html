@@ -127,8 +127,24 @@ $$
 		<h2>Section II: Triangle Meshes and Half-Edge Data Structure</h2>
 
 		<h3>Part 3: Area-weighted vertex normals</h3>
-		Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-
+		To compute area-weighted vertex normals, the half-edge data structure is used. The algorithm iterate through all faces that are connected to the vertex with the half-edge data structure. Starting from the vertex's associated half-edge, it repeatedly move to the opposite half-edge on the neighboring face and then go to the next half-edge of that face. By doing this process, we are able to circle around the vertex until we return to the starting half-edge.
+		<p>And to comput the normal, for each of the non-boundry face we take the three vertices, and we calculatethe face area. Then we multiply the face's normal by the area. Finally, we sum up the area-weighted normals for all the incident faces and normalize the result to get the final value.</p>
+		<p>We will present the effect with and without vertex normals:</p>
+		<div style="display: flex; flex-direction: column; align-items: center;">
+			<table style="width: 100%; text-align: center; border-collapse: collapse;">
+			  <tr>
+				<td style="text-align: center;">
+				  <img src="ver.png" width="400px"/>
+				  <figcaption>With Vertex Normal</figcaption>
+				</td>
+				<td style="text-align: center;">
+				  <img src="nover.png" width="400px"/>
+				  <figcaption>Without Vertex Normal</figcaption>
+				</td>
+			  </tr>
+			  
+			</table>
+		</div>
 		<h3>Part 4: Edge flip</h3>
 		Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
