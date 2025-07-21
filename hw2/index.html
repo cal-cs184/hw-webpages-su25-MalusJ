@@ -28,7 +28,7 @@
 	<body>
 		<div class="container">
 		<h1>CS184/284A Spring 2025 Homework 2 Write-Up</h1>
-		<div style="text-align: center;">Names: </div>
+		<div style="text-align: center;">Names: Yuanbo Jiang</div>
 
 		<br>
 
@@ -48,8 +48,7 @@
 		-->
 
 		<h2>Overview</h2>
-		Give a high-level overview of what you implemented in this homework. Think about what you've built as a whole. Share your thoughts on what interesting things you've learned from completing the homework.
-
+		In this homework, I implemented several fundamental mesh operations using the half-edge data structure. The tasks helped me gain a better understanding of these concepts and made me realize how cool it is to see the knowledge we learned being applied in practice. (I do feel a bit of regret for not starting this assignment earlier so my midterm grade could be much higher.)
 		<h2>Section I: Bezier Curves and Surfaces</h2>
 
 		<h3>Part 1: Bezier curves with 1D de Casteljau subdivision</h3>
@@ -196,21 +195,32 @@ $$
 			</table>
 		</div>
 		<h3>Part 6: Loop subdivision for mesh upsampling</h3>
-		Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-
-		<h2>(Optional) Section III: Potential Extra Credit - Art Competition: Model something Creative</h2>
-		Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-
-		<h2>Additional Notes (please remove)</h2>
+		Loop subdivison is an operation that first upsamples a mesh by subdividing each triangle into four smaller triangle and then smoothing the mesh by updating vertex positions to produce a smoother surface. The operation is commonly used to create higher resolution smooth approximation of the existing meshes. To implement this I followed the five steps in spec:
 		<ul>
-			<li>You can also add code if you'd like as so: <code>code code code</code></li>
-			<li>If you'd like to add math equations, 
-				<ul>
-					<li>You can write inline equations like so: \( a^2 + b^2 = c^2 \)</li>
-					<li>You can write display equations like so: \[ a^2 + b^2 = c^2 \]</li>
-				</ul>
-			</li>
+					<li><b>Computing Original Vertices' New Position:</b> I first computed the new positions for all original vertices using the formula based on their neighoring vertices. And I mark them as old vertices with the given bool <i>Vertex::isNew</i> flag.</li>
+					<li><b>Computing Updated Vertex Positions:</b>Then I computed the new positions for edge midpoints and have them stored in <i>Edge::newPosition</i></li>
+					<li>The reason why bilinear interpolation sampling provide better result than nearest neighbor sampling is that it samples not just one pixel but a weighted average from all its surrounded pixel to get the best corresponded color.</li>
 		</ul>
+		<div style="display: flex; justify-content: center; gap: 20px; align-items: center;">
+			<div style="text-align: center;">
+			<img src="cube1.png" width="300px"/>
+			<figcaption>cube</figcaption>
+			</div>
+		<div style="text-align: center;">
+			<img src="cube2.png" width="300px"/>
+			<figcaption>cube after one loop subdivison</figcaption>
+		</div>
+		<div style="text-align: center;">
+			<img src="cube3.png" width="300px"/>
+			<figcaption>cube after two loop subdivison</figcaption>
+		</div>
+		<div style="text-align: center;">
+			<img src="cube4.png" width="300px"/>
+			<figcaption>cube after three loop subdivison</figcaption>
+		</div>
+		</div>
+
+	
 		</div>
 	</body>
 </html>
