@@ -179,8 +179,22 @@ $$
 			</table>
 		</div>
 		<h3>Part 5: Edge split</h3>
-		Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-
+		Edge Split is an operation that inserts a new vertex on the midpoint of an existing edge, dividing it into two edges and forming two new triangles. This operation effectively splits the shape with two adjacent triangles into four smaller triangles. Very similar to what I did in the previous task, I first checked whether the edge is on boundary since boundary edges cannot be flipped(not attempting extra credit). Then I gather all the information needed from related half edges, their next and twins as well as the corresponding vertices edges and faces. Then I create the new vertex, edges, half edges and faces, and update all the pointers. Unlike the previosu task, edge split involves a lot of newly created edges, half edges, faces and vertices compared to the previous one. So I used a strategy in naming to keep things organized. Instead of naming the newly created variabels in sequence with the existing ones. I added the word "new" in front of them to clearly distinguish them, which made debugging much easier.
+	<div style="display: flex; flex-direction: column; align-items: center;">
+			<table style="width: 100%; text-align: center; border-collapse: collapse;">
+			  <tr>
+				<td style="text-align: center;">
+				  <img src="5before.png" width="400px"/>
+				  <figcaption>Cow before Edge Split and Edge Flip </figcaption>
+				</td>
+				<td style="text-align: center;">
+				  <img src="5after.png" width="400px"/>
+				  <figcaption>Cow after Edge Split and Edge Flip </figcaption>
+				</td>
+			  </tr>
+			  
+			</table>
+		</div>
 		<h3>Part 6: Loop subdivision for mesh upsampling</h3>
 		Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
