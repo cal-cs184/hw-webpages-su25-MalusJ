@@ -204,31 +204,43 @@ $$
 					<li><b>Copy New Vertex positions:</b> Finally, I update evry vertex's position to a new value, calculated by copying the stored newPosition into Position. And we are done with loop subdivision!</li>
 				</ul>
 		<p><b>The following is my observation for loop subdivision:</b></p>
-		<p>After the subdivision, the mesh definitely becomes smoother and rounder, just as exptected. And I notice that sharp corners and edges would quickly become rounded because that vertices are pulled toward the averge of their neighbors. The effect could definitely be reduced by pre-splitting edges near sharp feature before subdivision. We will use a set of comparison in the following examples.</p>
+		<p>After the subdivision, the mesh definitely becomes smoother and rounder, just as exptected. And I notice that sharp corners and edges would quickly become rounded because that vertices are pulled toward the averge of their neighbors. The effect could be slightly reduced by pre-splitting edges near sharp feature before subdivision. We will use a set of comparison in the following examples.</p>
 		<div style="display: flex; flex-direction: column; align-items: center;">
 			<table style="width: 100%; text-align: center; border-collapse: collapse;">
 			  <tr>
 				<td style="text-align: center;">
-				  <img src="ball1.png" width="400px"/>
+				  <img src="weird1.png" width="400px"/>
 				  <figcaption>Example one before loop subdivision</figcaption>
 				</td>
 				<td style="text-align: center;">
-				  <img src="ball2.png" width="400px"/>
+				  <img src="weird2.png" width="400px"/>
 				  <figcaption>Example one after loop subdivision</figcaption>
 				</td>
 			  </tr>
 			  <tr>
 				<td style="text-align: center;">
-				  <img src="weird1.png" width="400px"/>
+				  <img src="ball1.png" width="400px"/>
 				  <figcaption>Example two before loop subdivision</figcaption>
 				</td>
 				<td style="text-align: center;">
-				  <img src="weird2.png" width="400px"/>
+				  <img src="ball2.png" width="400px"/>
 				  <figcaption>Example two after loop subdivision</figcaption>
 				</td>
 			  </tr>
+			  <tr>
+				<td style="text-align: center;">
+				  <img src="ball3.png" width="400px"/>
+				  <figcaption>Example two with split before loop subdivision</figcaption>
+				</td>
+				<td style="text-align: center;">
+				  <img src="ball4.png" width="400px"/>
+				  <figcaption>Example two with split after loop subdivision</figcaption>
+				</td>
+			  </tr>
 			  </table>
-			  </div>		
+			  </div>	
+			  
+			  <p>As we can see above, mesh has become smoother. But at the same time, it might lost some information regarding the shape. I intentionally selected example 2 and example 2 with a edge flip which represents a hard feature on the side to compare. After a few loop subdivision, both results looked almost the same which is not desirable in some scenarios.This reminds that although loop subdivision is a powerful tool to increase quality, we still need to use it wisely and choose how much we want to do it.</p>
 		<div style="display: flex; justify-content: center; gap: 20px; align-items: center;">
 			<div style="text-align: center;">
 			<img src="cube1.png" width="300px"/>
@@ -247,7 +259,25 @@ $$
 			<figcaption>cube after three loop subdivison</figcaption>
 		</div>
 		</div>
-
+		<div style="display: flex; justify-content: center; gap: 20px; align-items: center;">
+			<div style="text-align: center;">
+			<img src="cubee1.png" width="300px"/>
+			<figcaption>new cube</figcaption>
+			</div>
+		<div style="text-align: center;">
+			<img src="cubee2.png" width="300px"/>
+			<figcaption>new cube after one loop subdivison</figcaption>
+		</div>
+		<div style="text-align: center;">
+			<img src="cubee3.png" width="300px"/>
+			<figcaption>new cube after two loop subdivison</figcaption>
+		</div>
+		<div style="text-align: center;">
+			<img src="cubee4.png" width="300px"/>
+			<figcaption>new cube after three loop subdivison</figcaption>
+		</div>
+		</div>
+		<p>To discover whether you can reduce the effect by pre-splitting some edges, I compared the same cube with different split/flip on each side. The original cube with two trianlges tend to be asymmetric after a few loop subdivision, which was caused by the uneven asymmetric split/flip on each side. I then adjusted the split and make it asymmetric. The result was a perfectly symmetric cube. This shows that pre-splitting does affect the outcome of loopsubdivion, as it can influence how mesh smooths and make reasult appear more/less uniform depending on the way you pre-split the edge.</p>
 	
 		</div>
 	</body>
