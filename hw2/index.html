@@ -197,10 +197,12 @@ $$
 		<h3>Part 6: Loop subdivision for mesh upsampling</h3>
 		Loop subdivison is an operation that first upsamples a mesh by subdividing each triangle into four smaller triangle and then smoothing the mesh by updating vertex positions to produce a smoother surface. The operation is commonly used to create higher resolution smooth approximation of the existing meshes. To implement this I followed the five steps in spec:
 		<ul>
-					<li><b>Computing Original Vertices' New Position:</b> I first computed the new positions for all original vertices using the formula based on their neighoring vertices. And I mark them as old vertices with the given bool <i>Vertex::isNew</i> flag.</li>
+					<li><b>Computing Original Vertices' New Position:</b> I first computed the new positions for all original vertices using the formula based on their neighoring vertices. And I mark them as old vertices with the given bool <i>Vertex::isNew</i> flag(value false).</li>
 					<li><b>Computing Updated Vertex Positions:</b>Then I computed the new positions for edge midpoints and have them stored in <i>Edge::newPosition</i></li>
-					<li>The reason why bilinear interpolation sampling provide better result than nearest neighbor sampling is that it samples not just one pixel but a weighted average from all its surrounded pixel to get the best corresponded color.</li>
-		</ul>
+					<li><b>Split Every Edge in Mesh:</b> The next step is to split all the original edges one by one. For each edge, new vertex at its midpoint is created. It sets this vertex's position to the value I calcualted earlier. This new vertex is also marked with <i>Vertex::isNew</i> flag(value true). So I could tell it apart from the old vertices. The four edges connected to this new vertex are also updated. </li>
+					<li><b>Flipping Edges:</b>After splliting, we go though all edges again and flipped the ones that is connected to one old vertex and one new vertex. This step is required to kep the structure evenly shaped.</li>
+					<li><b>Copy New Vertex positions:</b> Finally, I update evry vertex's position to a new value, calculated by copying the stored newPosition into Position. And we are done with loop subdivision!</li>
+				</ul>
 		<div style="display: flex; justify-content: center; gap: 20px; align-items: center;">
 			<div style="text-align: center;">
 			<img src="cube1.png" width="300px"/>
