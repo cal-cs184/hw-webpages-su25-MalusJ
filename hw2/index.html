@@ -146,8 +146,38 @@ $$
 			</table>
 		</div>
 		<h3>Part 4: Edge flip</h3>
-		Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-
+		Edge flip is an operation that changes the shared edge between two adjacent triangles. It removes the shared edge and connects the previously opposite vertices. This operation effectively flips the diagonal of the quadrilateral formed by the two triangles. To implement this, I check first that if the edge is on the boundary since boundary edges cannot do this operation. Then I gathered all the information of the halfedges, next, twin, vertex, edge, and face. And finally, I updated the reference halfedges of the vertices, and the corresponding vertices and faces. One method I used in this implementation is actually draw many half edges structure on a pape, label them, to keep track of them since writing in code could be messy and hard to keep track of.  It also helped during debugging, as I could trace the labels on the diagram to quickly locate where the issue might be.
+		<div style="display: flex; flex-direction: column; align-items: center;">
+			<table style="width: 100%; text-align: center; border-collapse: collapse;">
+			  <tr>
+				<td style="text-align: center;">
+				  <img src="flip1.png" width="400px"/>
+				  <figcaption>Before Edge Flip</figcaption>
+				</td>
+				<td style="text-align: center;">
+				  <img src="flip2.png" width="400px"/>
+				  <figcaption>After Edge Flip</figcaption>
+				</td>
+			  </tr>
+			  
+			</table>
+		</div>
+		While I was implementing the code for the flipEdge function, there was one point that a bug caused the the mesh the behave strangely, that the triangle disappeared completely and my result looks like the stormtrooper from star war. Later after carefully tracing through my hand written diagram, I find out this is caused by a single typo in variable name.
+		<div style="display: flex; flex-direction: column; align-items: center;">
+			<table style="width: 100%; text-align: center; border-collapse: collapse;">
+			  <tr>
+				<td style="text-align: center;">
+				  <img src="fault.png" width="400px"/>
+				  <figcaption>Glitched Image</figcaption>
+				</td>
+				<td style="text-align: center;">
+				  <img src="storm.png" width="400px"/>
+				  <figcaption>Stormtrooper Helmet</figcaption>
+				</td>
+			  </tr>
+			  
+			</table>
+		</div>
 		<h3>Part 5: Edge split</h3>
 		Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
