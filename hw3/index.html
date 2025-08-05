@@ -28,7 +28,7 @@
 	<body>
 		<div class="container">
 		<h1>CS184/284A Spring 2025 Homework 3 Write-Up</h1>
-		<div style="text-align: center;">Names: </div>
+		<div style="text-align: center;">Names: Yuanbo Jiang</div>
 
 		<br>
 
@@ -45,10 +45,16 @@
 		-->
 
 		<h2>Overview</h2>
-		Give a high-level overview of what you implemented in this homework. Think about what you've built as a whole. Share your thoughts on what interesting things you've learned from completing the homework.
-
-		<h2>Part 1: Ray Generation and Scene Intersection</h2>
-		Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+		For camera ray generation, the function first takes in a normalized (x,y) coordinate as input. And it outputs a ray in the world space. The way it is achieved can be break down into the following steps:
+		<ul>
+					<li><b>Convert FoVs to Radians:</b>Convert the horizontal and vertical field of view from degrees to radians to set up for calcualtions.</li>
+					<li><b>Compute sensor plane:</b>Then it computes the sensor plane's size. The formula is <i>width = 2 * tan(hFov_rad / 2)</i> and <i>height = 2 * tan(vFov_rad / 2)</i></i></li>
+					<li><b>Map normalized coordinates to sensor coordinates:</b> The next step is to shift (x,y) from the range [0,1] making (0.5, 0.5) at the center, and then scale by the sensor dimensions to get the x,y coordinates on sensor.</li>
+					<li><b>Compute Ray direction in camera space:</b>By constructing a vector from the camera origin(0,0,0) through the point(by sensorX & sensorY) on the sensor plane and normalizing, we get the ray direction.</li>
+					<li><b>Transform to world space:</b> Finally, we rotate the camera space direction vector into world space using the given c2w matrix, and then we normalize the result. And in the end, the function creates a ray object with camera position, direction, min_t and max_t, and return the result. </li>
+		</ul>
+		
+		<ul> <li><b>Receive ray and primitive data:</b> The intersection functions take in a <code>Ray</code> object (with origin, direction, and valid <code>t</code> range) and the primitive’s geometry (triangle vertices/normals or sphere center/radius).</li> <li><b>Triangle – compute edges:</b> For a triangle, two edge vectors are computed: <i>E1 = p2 – p1</i> and <i>E2 = p3 – p1</i>. These define the triangle’s orientation in 3D space.</li> <li><b>Triangle – Möller–Trumbore setup:</b> <ul> <li>Compute <i>S1 = cross(ray.d, E2)</i> and determinant <i>det = dot(S1, E1)</i>.</li> <li>If <i>det</i> is near zero, the ray is parallel to the triangle and no intersection occurs.</li> </ul> </li> <li><b>Triangle – barycentric coordinates:</b> <ul> <li>Inverse determinant <i>inv_det = 1 / det</i>.</li> <li>Compute vector <i>S = ray.o – p1</i>.</li> <li><i>b1 = dot(S1, S) * inv_det</i> → must be in [0, 1].</li> <li>Compute <i>S2 = cross(S, E1)</i> and <i>b2 = dot(S2, ray.d) * inv_det</i> → must be in [0, 1], and <i>b1 + b2 ≤ 1</i>.</li> </ul> </li> <li><b>Triangle – intersection distance:</b> <ul> <li>Compute <i>t = dot(S2, E2) * inv_det</i>.</li> <li>If <i>t</i> is within <code>[ray.min_t, ray.max_t]</code>, the ray hits the triangle.</li> </ul> </li> <li><b>Triangle – updating intersection info:</b> <ul> <li>Update <code>ray.max_t</code> to <i>t</i> for nearest‑hit tracking.</li> <li>Fill <code>Intersection</code> with hit distance, pointer to primitive, material (<code>bsdf</code>), and interpolated normal using <i>b0 = 1 – b1 – b2</i>.</li> </ul> </li> <li><b>Sphere – quadratic setup:</b> For a sphere with center <i>c</i> and radius <i>r</i>, let <i>oc = ray.o – c</i>. Coefficients: <ul> <li><i>a = dot(ray.d, ray.d)</i></li> <li><i>b = 2 * dot(oc, ray.d)</i></li> <li><i>c = dot(oc, oc) – r²</i></li> </ul> </li> <li><b>Sphere – solve for roots:</b> Compute discriminant <i>Δ = b² – 4ac</i>. If Δ &lt; 0, no intersection. Otherwise, compute two roots <i>t1</i> and <i>t2</i>, ordered so <i>t1 ≤ t2</i>.</li> <li><b>Sphere – choose valid hit:</b> Pick the smallest <i>t</i> in <code>[ray.min_t, ray.max_t]</code>. If none are valid, no intersection occurs.</li> <li><b>Sphere – updating intersection info:</b> <ul> <li>Update <code>ray.max_t</code> to the chosen <i>t_hit</i>.</li> <li>Fill <code>Intersection</code> with hit distance, primitive pointer, material, and normal computed as <i>(hit_point – center).unit()</i>.</li> </ul> </li> </ul>
 
 		<p>Here is an example 2x2 gridlike structure using an HTML table. Each <b>tr</b> is a row and each <b>td</b> is a column in that row. You might find this useful for framing and showing your result images in an organized fashion.</p>
 		<div style="display: flex; flex-direction: column; align-items: center;">
