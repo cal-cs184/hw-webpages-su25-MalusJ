@@ -172,8 +172,67 @@
 <p>With BVH enabled, the rendering performance improved dramatically. As seen in the logs, the version without BVH takes more than 283 seconds and averaged over 7457 intersection tests per ray. In contrast, the BVH-enabled version completed rendering in just 0.092 seconds, averaging only 3.2 intersection tests per ray! And as we can see that the total number of rays traced is similar between both versions which is expected behavior. BVH is proved to be effective tool to accelerate the rendering.</p>
 
 		<h2>Part 3: Direct Illumination</h2>
-		Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+				<p><b>Walk through both implementations of the direct lighting function.</b></p>
+		 
+		<ul>
+			<li><b>Uniform Hemisphere Sampling: This approach estimate direct lighting by sampling directions uniformly across the hemisphere above the surface. And for each sample, it randomly pick a direction within the hemisphere aligned with the surface normal and check if it hits a light. If the light is visible in that direction, we get the BSDF and scale the contribution by the COS of the angle and the PDF of the uniform distribution. This method is fast and straightforward. But it does produce a lot of noises.</b></li>
+			<li><b>Importance Sampling lights:</b>For each light in the scenene, we sample a point on the light's surface and use a shadow ray to check visibility. Then we compute the contribution using the incoming radiance from the light, the bsdf, and the geometry term, dividing  the result by PDF. And if the sampled light point is visible, it would have greater contribution tothe final radiance estimate.</li>
+		</ul>
+		
+		
+		<p><b>Show some images rendered with both implementations of the direct lighting function. </b></p>
+		<div style="display: flex; flex-direction: column; align-items: center;">
+			<table style="width: 100%; text-align: center; border-collapse: collapse;">
+			  <tr>
+				<td style="text-align: center;">
+				  <img src="dragon_uni.png" width="400px"/>
+				  <figcaption>dragon with uniform hemisphere sampling</figcaption>
+				</td>
+				<td style="text-align: center;">
+				  <img src="dragon_imp.png" width="400px"/>
+				  <figcaption>dragon with importance sampling</figcaption>
+				</td>
+			  </tr>
+			  <tr>
+				<td style="text-align: center;">
+				  <img src="bunny_uni.png" width="400px"/>
+				  <figcaption>bunny with uniform hemisphere sampling</figcaption>
+				</td>
+				<td style="text-align: center;">
+				  <img src="bunny_imp.png" width="400px"/>
+				  <figcaption>bunny with importance sampling</figcaption>
+				</td>
+			  </tr>
+			</table>
+		</div>
 
+		<p>Focus on one particular scene with at least one area light and compare the noise levels in soft shadows when rendering with 1, 4, 16, and 64 light rays (the -l flag) and with 1 sample per pixel (the -s flag) using light sampling, not uniform hemisphere sampling.</p>
+		<div style="display: flex; flex-direction: column; align-items: center;">
+			<table style="width: 100%; text-align: center; border-collapse: collapse;">
+			  <tr>
+				<td style="text-align: center;">
+				  <img src="1.png" width="400px"/>
+				  <figcaption>with 1 light rays</figcaption>
+				</td>
+				<td style="text-align: center;">
+				  <img src="2.png" width="400px"/>
+				  <figcaption>with 4 light rays</figcaption>
+				</td>
+			  </tr>
+			  <tr>
+				<td style="text-align: center;">
+				  <img src="3.png" width="400px"/>
+				  <figcaption>with 16 light rays</figcaption>
+				</td>
+				<td style="text-align: center;">
+				  <img src="4.png" width="400px"/>
+				  <figcaption>with 64 light rays</figcaption>
+				</td>
+			  </tr>
+			</table>
+		</div>
+		<p><b>Compare the results between uniform hemisphere sampling and lighting sampling in a one-paragraph analysis.</b></p>
+		<p>Uniform hemisphere sampling distributes rays in a more even manner, but lead to noisy renders because many samples missing the light sources. In contrast, importance sampling focuses rays toward lights, producing cleaner images with fewer samples. And this would make it more efficient and visually effective.</p>
 		<h2>Part 4: Global Illumination</h2>
 		Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
