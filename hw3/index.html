@@ -45,6 +45,7 @@
 		-->
 
 		<h2>Overview</h2>
+		<p><b>Walk through the ray generation and primitive intersection parts of the rendering pipeline.</b></p>
 		For camera ray generation, the function first takes in a normalized (x,y) coordinate as input. And it outputs a ray in the world space. The way it is achieved can be break down into the following steps:
 		<ul>
 					<li><b>Convert FoVs to Radians:</b>Convert the horizontal and vertical field of view from degrees to radians to set up for calcualtions.</li>
@@ -53,30 +54,47 @@
 					<li><b>Compute Ray direction in camera space:</b>By constructing a vector from the camera origin(0,0,0) through the point(by sensorX & sensorY) on the sensor plane and normalizing, we get the ray direction.</li>
 					<li><b>Transform to world space:</b> Finally, we rotate the camera space direction vector into world space using the given c2w matrix, and then we normalize the result. And in the end, the function creates a ray object with camera position, direction, min_t and max_t, and return the result. </li>
 		</ul>
+		<div style="display: flex; justify-content: center; gap: 20px; align-items: center;">
+			<div style="text-align: center;">
+			<img src="CBempty.png" width="300px"/>
+			<figcaption>new cube</figcaption>
+			</div>
+		<div style="text-align: center;">
+			<img src="banana.png" width="300px"/>
+			<figcaption>new cube after one loop subdivison</figcaption>
+		</div>
+		<div style="text-align: center;">
+			<img src="task3.png" width="300px"/>
+			<figcaption>new cube after two loop subdivison</figcaption>
+		</div>
+		</div>
 		
-		<p></p>
-
-		<p>Here is an example 2x2 gridlike structure using an HTML table. Each <b>tr</b> is a row and each <b>td</b> is a column in that row. You might find this useful for framing and showing your result images in an organized fashion.</p>
+		<p>In primitive intersection stage of the pipeline, the function determines whether a ray hits any of the scene's geometric primitives, triangles and spheres in this case. The process is done by using the Moller-Trumbore Algorithm. It is a effective tool to check whether a ray intersects with a triangle and it also provides the coordinates if they do intersect. So we first perform the intersection tests within ray's valid range. When a closer hit is found, the function updates the ray's maximum allowable distance (max_t). When a valid hit occurs, the intersection record is filled with details including the hit distance, a pointer to the primitive, the bsdf material, and the surface normal at the hit point. The primitives, triangles and spheres, each have their own intersection functions which I will be discusisng below.</p>
+		
+		<p><b>Triangle Intersection Algorithm explanation: </b></p>
+		<p>In the path tracer, we use the Moller-Trumbore algorithm to test whether a ray intersects a triangle in the scene. The algorithm takes in three points defining the triangle. In the function, we first do a quick check to see whether they are parallel, if so return false since they would not intersectt. Then we use barycentric coordinates to see if the point of intersection is inside the triangle. We also know whether where it happens if it is inside.</p>
+		
+		<p><b>Show images with normal shading for a few small .dae files. </b></p>
 		<div style="display: flex; flex-direction: column; align-items: center;">
 			<table style="width: 100%; text-align: center; border-collapse: collapse;">
 			  <tr>
 				<td style="text-align: center;">
-				  <img src="cornell.png" width="400px"/>
-				  <figcaption>Caption goes here.</figcaption>
+				  <img src="coil.png" width="400px"/>
+				  <figcaption>CBcoil.</figcaption>
 				</td>
 				<td style="text-align: center;">
-				  <img src="cornell.png" width="400px"/>
-				  <figcaption>Caption goes here.</figcaption>
+				  <img src="spheres.png" width="400px"/>
+				  <figcaption>CBspheres.</figcaption>
 				</td>
 			  </tr>
 			  <tr>
 				<td style="text-align: center;">
-				  <img src="cornell.png" width="400px"/>
-				  <figcaption>Caption goes here.</figcaption>
+				  <img src="bunny.png" width="400px"/>
+				  <figcaption>CBbunny.</figcaption>
 				</td>
 				<td style="text-align: center;">
-				  <img src="cornell.png" width="400px"/>
-				  <figcaption>Caption goes here.</figcaption>
+				  <img src="gems.png" width="400px"/>
+				  <figcaption>gems.</figcaption>
 				</td>
 			  </tr>
 			</table>
