@@ -32,12 +32,10 @@
 
 		<br>
 
-		Link to webpage: (TODO) <a href="https://cs184.eecs.berkeley.edu/sp25">cs184.eecs.berkeley.edu/sp25</a>
-		Link to GitHub repository: (TODO) <a href="https://cs184.eecs.berkeley.edu/sp25">cs184.eecs.berkeley.edu/sp25</a>
 		
 		<figure>
 			<img src="cornell.png" alt="Cornell Boxes with Bunnies" style="width:70%"/>
-			<figcaption>You can add images with captions!</figcaption>
+			<figcaption> </figcaption>
 		</figure>
 
 		<!--
@@ -45,6 +43,7 @@
 		-->
 
 		<h2>Overview</h2>
+		<p>In this project, I built a path tracer to render realistic scenes with direct and global illumination. I built the BVH tool to help accelerate the rendeirng process. The project also handled lighting using idffernt sampling methods for direct lighting. And for indirect lighting, I was able to utilize concepts like the Russian Roulette to save computation resource while maintaining acceptable result.</p>
 		<p><b>Walk through the ray generation and primitive intersection parts of the rendering pipeline.</b></p>
 		For camera ray generation, the function first takes in a normalized (x,y) coordinate as input. And it outputs a ray in the world space. The way it is achieved can be break down into the following steps:
 		<ul>
@@ -175,7 +174,7 @@
 				<p><b>Walk through both implementations of the direct lighting function.</b></p>
 		 
 		<ul>
-			<li><b>Uniform Hemisphere Sampling: This approach estimate direct lighting by sampling directions uniformly across the hemisphere above the surface. And for each sample, it randomly pick a direction within the hemisphere aligned with the surface normal and check if it hits a light. If the light is visible in that direction, we get the BSDF and scale the contribution by the COS of the angle and the PDF of the uniform distribution. This method is fast and straightforward. But it does produce a lot of noises.</b></li>
+			<li><b>Uniform Hemisphere Sampling:</b> This approach estimate direct lighting by sampling directions uniformly across the hemisphere above the surface. And for each sample, it randomly pick a direction within the hemisphere aligned with the surface normal and check if it hits a light. If the light is visible in that direction, we get the BSDF and scale the contribution by the COS of the angle and the PDF of the uniform distribution. This method is fast and straightforward. But it does produce a lot of noises.</b></li>
 			<li><b>Importance Sampling lights:</b>For each light in the scenene, we sample a point on the light's surface and use a shadow ray to check visibility. Then we compute the contribution using the incoming radiance from the light, the bsdf, and the geometry term, dividing  the result by PDF. And if the sampled light point is visible, it would have greater contribution tothe final radiance estimate.</li>
 		</ul>
 		
