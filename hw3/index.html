@@ -57,15 +57,15 @@
 		<div style="display: flex; justify-content: center; gap: 20px; align-items: center;">
 			<div style="text-align: center;">
 			<img src="CBempty.png" width="300px"/>
-			<figcaption>new cube</figcaption>
+			<figcaption> </figcaption>
 			</div>
 		<div style="text-align: center;">
 			<img src="banana.png" width="300px"/>
-			<figcaption>new cube after one loop subdivison</figcaption>
+			<figcaption> </figcaption>
 		</div>
 		<div style="text-align: center;">
 			<img src="task3.png" width="300px"/>
-			<figcaption>new cube after two loop subdivison</figcaption>
+			<figcaption> </figcaption>
 		</div>
 		</div>
 		
@@ -101,7 +101,75 @@
 		</div>
 		
 		<h2>Part 2: Bounding Volume Hierarchy</h2>
-		Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+		<p><b>Walk through your BVH construction algorithm. Explain the heuristic you chose for picking the splitting point.</b></p>
+		To speed up ray tracing, I build a bounding volume hierachy using recursive algorithm. The constriction starts with a list of all primitives in the scene. Then it computes a bounding box t hat contains all of them. The spliting algorithm could be describe as steps below
+		<ul>
+			<li>Calculate the bounding box of all the centroids of the primitives</li>
+			<li>choose the longest axis of that centroid box</li>
+			<li>sort the primitives by their centroid positions along the axis</li>
+			<li>And split them into two halfs</li>
+		</ul>
+		The approach is simple and fast, and it creates balances trees where each node has close amount of primitives.
+		<figure>
+			<img src="BVH.png" alt="Cornell Boxes with Bunnies" style="width:70%"/>
+			<figcaption>BVH example</figcaption>
+		</figure>
+		
+		
+		<p><b>Triangle Intersection Algorithm explanation: </b></p>
+		<p>In the path tracer, we use the Moller-Trumbore algorithm to test whether a ray intersects a triangle in the scene. The algorithm takes in three points defining the triangle. In the function, we first do a quick check to see whether they are parallel, if so return false since they would not intersectt. Then we use barycentric coordinates to see if the point of intersection is inside the triangle. We also know whether where it happens if it is inside.</p>
+		
+		<p><b>how images with normal shading for a few large .dae files that you can only render with BVH acceleration</b></p>
+		<div style="display: flex; flex-direction: column; align-items: center;">
+			<table style="width: 100%; text-align: center; border-collapse: collapse;">
+			  <tr>
+				<td style="text-align: center;">
+				  <img src="lucy.png" width="400px"/>
+				  <figcaption>CBlucy</figcaption>
+				</td>
+				<td style="text-align: center;">
+				  <img src="cow.png" width="400px"/>
+				  <figcaption>cow</figcaption>
+				</td>
+			  </tr>
+			  <tr>
+				<td style="text-align: center;">
+				  <img src="max.png" width="400px"/>
+				  <figcaption>maxplanck</figcaption>
+				</td>
+				<td style="text-align: center;">
+				  <img src="walle.png" width="400px"/>
+				  <figcaption>wall-e</figcaption>
+				</td>
+			  </tr>
+			</table>
+		</div>
+		<p><b>Compare rendering time:</b></p>
+		<div style="display: flex; flex-direction: column; align-items: center;">
+			<table style="width: 100%; text-align: center; border-collapse: collapse;">
+			  <tr>
+				<td style="text-align: center;">
+				  <img src="max1.png" width="400px"/>
+				  <figcaption>MaxPlanck without BVH</figcaption>
+				</td>
+				<td style="text-align: center;">
+				  <img src="max2.png" width="400px"/>
+				  <figcaption>MaxPlanck with BVH</figcaption>
+				</td>
+			  </tr>
+			  <tr>
+				<td style="text-align: center;">
+				  <img src="bunny1.png" width="400px"/>
+				  <figcaption>bunny without BVH</figcaption>
+				</td>
+				<td style="text-align: center;">
+				  <img src="bunny2.png" width="400px"/>
+				  <figcaption>Bunny with BVH</figcaption>
+				</td>
+			  </tr>
+			</table>
+		</div>
+<p>With BVH enabled, the rendering performance improved dramatically. As seen in the logs, the version without BVH takes more than 283 seconds and averaged over 7457 intersection tests per ray. In contrast, the BVH-enabled version completed rendering in just 0.092 seconds, averaging only 3.2 intersection tests per ray! And as we can see that the total number of rays traced is similar between both versions which is expected behavior. BVH is proved to be effective tool to accelerate the rendering.</p>
 
 		<h2>Part 3: Direct Illumination</h2>
 		Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
