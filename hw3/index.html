@@ -234,8 +234,37 @@
 		<p><b>Compare the results between uniform hemisphere sampling and lighting sampling in a one-paragraph analysis.</b></p>
 		<p>Uniform hemisphere sampling distributes rays in a more even manner, but lead to noisy renders because many samples missing the light sources. In contrast, importance sampling focuses rays toward lights, producing cleaner images with fewer samples. And this would make it more efficient and visually effective.</p>
 		<h2>Part 4: Global Illumination</h2>
-		Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-
+		<p><b>Walk through your implementation of the indirect lighting function.</b></p>
+		<p>In my implementation of indirect lighting, I use a recursive function to trace rays that simulate light bouncing off surfaces. At each intersection point, I sample a direction from the BSDF and generate a new ray in the corresponding direction. I later implemented the Russian Roulette to probabilistically decide whether to continue the recursion, which helps save computation resources while having a close result. The radiance from the recursive call is scaled by the BSDF value, the COS of the angle between the bounce direction and surface normal, and divided by the sampling probability. This result is accumulated to estimate indirect illumination.</p>
+		<div style="display: flex; flex-direction: column; align-items: center;">
+			<table style="width: 100%; text-align: center; border-collapse: collapse;">
+			  <tr>
+				<td style="text-align: center;">
+				  <img src="colorful.png" width="400px"/>
+				  <figcaption>Color blending result</figcaption>
+				</td>
+				<td style="text-align: center;">
+				  <img src="colorful1.png" width="400px"/>
+				  <figcaption>Color blending result</figcaption>
+				</td>
+			  </tr>
+			</table>
+		</div>
+		<p><b>Show some images rendered with global (direct and indirect) illumination. Use 1024 samples per pixel.</b></p>
+		<div style="display: flex; flex-direction: column; align-items: center;">
+			<table style="width: 100%; text-align: center; border-collapse: collapse;">
+			  <tr>
+				<td style="text-align: center;">
+				  <img src="bright.png" width="400px"/>
+				  <figcaption>Only direct light</figcaption>
+				</td>
+				<td style="text-align: center;">
+				  <img src="dark.png" width="400px"/>
+				  <figcaption>Only indirect light</figcaption>
+				</td>
+			  </tr>
+			</table>
+		</div>
 		<h2>Part 5: Adaptive Sampling</h2>
 		Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
